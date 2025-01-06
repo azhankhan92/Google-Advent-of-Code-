@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+      
+        String filePath = "C:\\Users\\PMYLS\\Documents\\Day1.txt"; 
+
+        // To read input file from text file in local host.
+        List<Integer> numbers = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                // Parse each line as an integer and add to the list
+                numbers.add(Integer.parseInt(line.trim()));
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading the file: " + e.getMessage());
+            return;
+        }
+
+  
+        int sum = 0;
+        for (int number : numbers) {
+            sum += number;
+        }
+
+        System.out.println("The sum of all numbers is: " + sum);
+    }
+}
