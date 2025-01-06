@@ -9,15 +9,15 @@ public class MAIN {
         String filePath = "C:\\Users\\PMYLS\\Downloads\\day3part2.txt"; // Update with your file path
 
         try {
-            
+            // Read the input file as a single string
             String input = Files.readString(Paths.get(filePath));
 
-          
+            // Regular expressions to find `mul`, `do`, and `don't`
             Pattern mulPattern = Pattern.compile("mul\\((\\d+),(\\d+)\\)");
             Pattern doPattern = Pattern.compile("do\\(\\)");
             Pattern dontPattern = Pattern.compile("don't\\(\\)");
 
-            boolean mulEnabled = true;
+            boolean mulEnabled = true; // Multiplication instructions start enabled
             int sum = 0;
 
             Matcher mulMatcher = mulPattern.matcher(input);
@@ -48,4 +48,6 @@ public class MAIN {
         }
     }
 }
+
+
 
