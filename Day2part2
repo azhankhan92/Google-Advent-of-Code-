@@ -1,0 +1,54 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+public class MAIN {
+    public static void main(String[] args) {
+        String filePath = "C:\\Users\\PMYLS\\Downloads\\Day4part1.txt"; 
+
+        try {
+  
+            String[] lines = Files.readAllLines(Paths.get(filePath)).toArray(new String[0]);
+            int rows = lines.length;
+            int cols = lines[0].length();
+            char[][] grid = new char[rows][cols];
+
+            for (int i = 0; i < rows; i++) {
+                grid[i] = lines[i].toCharArray();
+            }
+
+   
+            String word = "XMAS";
+            int wordLength = word.length();
+            int count = 0;
+
+            int[][] directions = {
+                    {0, 1},  // Right
+                    {0, -1}, // Left
+                    {1, 0},  // Down
+                    {-1, 0}, // Up
+                    {1, 1},  // Down-right
+                    {1, -1}, // Down-left
+                    {-1, 1}, // Up-right
+                    {-1, -1} // Up-left
+            };
+
+            // Check all positions in the grid
+            for (int r = 0; r < rows; r++) {
+                for (int c = 0; c < cols; c++) {
+                    // Check each direction
+                    for (int[] dir : directions) {
+                        int dr = dir[0], dc = dir[1];
+                        if (canFormWord(grid, r, c, dr, dc, word)) {
+                            count++;
+                        }
+                    }
+                }
+            }
+
+            System.out.println("Total occurrences of XMAS: " + count);
+        } catch (IOException e) {
+            System.err.println("Error reading the file: " + e.getMessage());
+        }
+    }
+
